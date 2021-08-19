@@ -63,6 +63,25 @@ const filmsLists =  {
         items: await basicFetch(`/discover/movie?with_genres=99&`)
       },
     ]
+  },
+  getMovieInfo: async (movieId, type) => {
+    let info = {}
+
+    if (movieId) {
+      switch (type) {
+        case "movie":
+          info = await basicFetch(`/movie/${movieId}?`);
+        break;
+        case "tv":
+          info = await basicFetch(`/tv/${movieId}?`);
+        break;
+        default:
+          info = null;
+        break;
+      }
+    }
+
+    return info;
   }
 }
 
